@@ -57,6 +57,7 @@ table{
     background-color:rgb(219, 219, 230);
     margin: 15% auto;
     border: 1px solid #080707;
+    align-items: center;
     width: 20%;
 }
 .viewbackbutton{
@@ -109,7 +110,6 @@ h1{
     align-items: center;
     background-color:rgb(219, 219, 230);
     margin: 15% auto;
-
     border: 1px solid #080707;
     width: 25%;
 }
