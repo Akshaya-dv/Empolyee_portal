@@ -121,6 +121,7 @@ h1{
     color: aliceblue;
     height: 30px;
     margin-top:2%;
+    border-color:rgb(40, 27, 230) ;
     border-radius: 5px;
-    margin-left: 60%;
+    margin-left: auto;
 }
