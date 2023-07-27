@@ -1,0 +1,54 @@
+body{
+    background-image: url('sankey.jpg');
+
+}
+.main{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: blue;
+}
+
+.idclass{
+    margin: 0px;
+}
+.lable{
+    font-size: large;
+   font-style:bold;
+}
+.input{
+    height: 25px;
+      width: 270px;
+}
+.select{
+    height: 29px;
+    width:280px
+}
+.addbutton{
+    background-color: blue;
+    color: white;
+    border:none;
+    width: 70px;
+    height: 30px;
+    font-size: medium;
+    border-radius: 5px;
+    align-items: center;
+}
+.error{
+    color: red;
+}
+@media all and (max-width:700px)
+{
+    .main{
+        flex-direction: column;
+    }
+    .froms{
+        flex-direction: column;
+    }
+    
+}

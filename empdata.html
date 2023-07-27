@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee data</title>
+    <link rel="stylesheet" href="empdata.css">
+</head>
+
+<body>
+    <script src="javascript.js"></script>
+  <div class="heading">  <h1> Employee Data</h1>
+    <button class="backToAdd" onclick="backToAdd()">Add New Record</button>
+</div>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Designation</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+    
+        </tbody>
+    </table>
+
+
+<!--Popup for view button -->
+    <div class="viewpopup" id="viewpop">
+        <div id="viewcontent" class="viewpop-content">
+            <div class="cancle">  <button class="viewbackbutton" onclick="viewbackfun()">&#x2716;</button></div>
+
+         <div id="image">
+        <!--image will be added-->
+         </div>
+  
+          <div class="idclass">
+              ID :
+              <span  id="Veid" ></span><br>
+          </div>
+          <div class="idclass">
+              Name : 
+              <span  id="Vename"></span><br>
+          </div>
+          <div class="idclass">
+              Age :
+             <span  id="Veage" ></span><br>
+          </div>
+          <div class="idclass">
+              Designation :
+            <span id="Vedesg"></span><br>
+          </div>
+          <div class="idclass">
+              Gender :
+              <span  id="VEgender" ><br>
+          </div>
+        
+      </div>
+    </div>
+
+
+    <!-- Edit popup -->
+    <div class="editpopup" id="editpop">
+        <div class="editpop-content">
+        <center><h1 >Edit data</h1></center>
+          <div class="idclass">
+              <label class="lable" >ID*</label><br>
+              <input class="input" id="eid" type="text"><br>
+              <span class="error" id="id_error"></span><br>
+          </div>
+          <div class="idclass">
+              <label class="lable" >Name*</label><br>
+              <input class="input" id="ename" type="text" ><br>
+              <span class="error" id="name_error"></span><br>
+          </div>
+          <div class="idclass">
+              <label class="lable" >Age*</label><br>
+              <input class="input" id="eage" type="text" ><br>
+              <span class="error" id="age_error"></span><br>
+          </div>
+          <div class="idclass">
+              <label class="lable" >Designation*</label><br>
+              <select name="desg" class="select" id="edesg" >
+                  <option value="Manager">Manager</option><br>
+                  <option value="Developer">Developer</option><br>
+                  <option value="Tester">Tester</option><br>
+                  <option value="HR">HR*</option><br>
+                  <option value="Solution Analyst">Solution Analyst</option><br>
+              </select><br>
+              <span class="error" id="desg_error"></span><br>
+          </div>
+          <div class="idclass">
+              <label class="lable" >URL*</label><br>
+              <input class="input" id="eurl" type="text" ><br>
+              <span class="error" id="url_error"></span><br>
+          </div>
+          <div class="idclass">
+              <label class="lable" >Gender*</label><br>
+              <select id="Egender" class="select" type="text" >
+                  <option value="M">Male</option><br>
+                  <option value="F">Female</option><br>
+                  <option value="O">Other</option><br>
+              </select><br>
+              <span class="error" id="gender_error"></span><br><br><br>
+        </div>
+              <button class="editbutton" onclick="editfun()">Edit</button><br>
+      </div>
+    </div>
+
+
+
+    <script>
+        displayTable();
+    </script>
+</body>
+
+</html>

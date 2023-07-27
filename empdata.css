@@ -1,0 +1,123 @@
+
+table,th,td{
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+tr:nth-child(even) {
+    background-color: #c4def363;
+}
+tr:nth-child(odd) {
+    background-color: #979cf87e;
+}
+th{
+    background-color:rgb(40, 27, 230);
+    height: 30px;
+    color:aliceblue;
+}
+table{
+    width: 100%;
+}
+.edit{
+    background-color: gray;
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.delete{
+    background-color: rgb(230, 20, 20);
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left:10px;
+}
+.view{
+    background-color:rgb(87, 168, 87);
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+   
+}
+
+.viewpopup{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+.viewpop-content{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(219, 219, 230);
+    margin: 15% auto;
+    border: 1px solid #080707;
+    width: 20%;
+}
+.viewbackbutton{
+    border-radius: 30px;
+    background-color: red;
+    align-items: first baseline;
+}
+.heading{
+    display: flex;
+}
+.idclass{
+    margin: 0%;
+}
+.select{
+    height: 25px;
+    width:180px
+}
+span{
+    height: 25px;
+      width: 270px;
+}
+.backbutton{
+    background-color: gray;
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.editbutton{
+    background-color: rgb(40, 27, 230);
+    color: aliceblue;
+    border-radius: 3px;
+}
+h1{
+    color: rgb(40, 27, 230);
+}
+.editpopup{
+    display:none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+.editpop-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgb(219, 219, 230);
+    margin: 15% auto;
+
+    border: 1px solid #080707;
+    width: 25%;
+}
+.backToAdd{
+    background-color:rgb(40, 27, 230);
+    color: aliceblue;
+    height: 30px;
+    margin-top:2%;
+    border-radius: 5px;
+    margin-left: 60%;
+}
