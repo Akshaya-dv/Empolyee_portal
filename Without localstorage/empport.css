@@ -122,10 +122,38 @@ table{
     display: flex;
     flex-direction: column;
     background-color:rgb(219, 219, 230);
-    margin: 15% auto;
+    margin:  auto;
     border: 1px solid #080707;
     align-items: center;
     width: 20%;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    top: 26px;
+}
+.editpopup{
+ 
+    display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+.editpop-content{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    top: 26px;
 }
 .cancelbutton{
     border-radius: 40px;
@@ -160,39 +188,7 @@ h1{
 .idclass1{
     margin:0px;
 }
-.editpopup{
-    /* 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.5);  */
-    display:none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
-}
-.editpop-content{
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    position: relative;
-    background-color: #fff;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 0.25rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    top: 26px;
-}
+
 .backToAdd{
     background-color:rgb(40, 27, 230);
     color: aliceblue;
