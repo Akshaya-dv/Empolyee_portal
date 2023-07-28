@@ -1,3 +1,67 @@
+body{
+    background-image: url('sankey.jpg');
+
+}
+.main{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.forms{
+    display: flex;
+    flex-direction: row;
+    
+}
+h1{
+    color: blue;
+}
+.idclass{
+
+    margin: 0px;
+    margin-left: 50px;
+}
+
+.lable{
+    font-size: large;
+   font-style:bold;
+}
+.input{
+    height: 25px;
+      width: 270px;
+}
+.select{
+    height: 29px;
+    width:280px;
+}
+
+.addbutton{
+    background-color: blue;
+    color: white;
+    border:none;
+    width: 130px;
+    height: 30px;
+    font-size: medium;
+    border-radius: 5px;
+    align-items: center;
+}
+.viewTablebutton{
+    background-color: purple;
+    color: white;
+    border:none;
+    width: 130px;
+    height: 30px;
+    margin-left: 30px;
+    font-size: medium;
+    border-radius: 5px;
+    align-items: center;
+}
+.error{
+    color: red;
+}
+
 
 table,th,td{
     border: 1px solid gray;
@@ -51,21 +115,17 @@ table{
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: auto; 
     background-color: rgba(0, 0, 0, 0.5); 
 }
 .viewpop-content{
     display: flex;
     flex-direction: column;
     background-color:rgb(219, 219, 230);
+    margin: 15% auto;
     border: 1px solid #080707;
     align-items: center;
-    width: 30%;
-    position: relative;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 0.25rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    top: 26px;
+    width: 20%;
 }
 .cancelbutton{
     border-radius: 40px;
@@ -77,13 +137,8 @@ table{
 .heading{
     display: flex;
 }
-.idclass{
-    margin: 0%;
-}
-.select{
-    height: 25px;
-    width:180px
-}
+
+
 span{
     height: 25px;
       width: 270px;
@@ -102,8 +157,19 @@ span{
 h1{
     color: rgb(40, 27, 230);
 }
+.idclass1{
+    margin:0px;
+}
 .editpopup{
- 
+    /* 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5);  */
     display:none;
     position: fixed;
     z-index: 1;
@@ -114,13 +180,7 @@ h1{
     background-color: rgba(0,0,0,0.4);
 }
 .editpop-content{
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:rgb(219, 219, 230);
-    margin: 15% auto;
-    border: 1px solid #080707;
-    width: 25%; */
+  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,4 +201,21 @@ h1{
     border-color:rgb(40, 27, 230) ;
     border-radius: 5px;
     margin-left: auto;
+}
+
+
+
+
+
+@media all and (max-width:700px)
+{
+    .main{
+        flex-direction: column;
+    }
+    .forms{
+        flex-direction: column;
+    }
+    .idclass{
+        margin: 0px;
+    }
 }

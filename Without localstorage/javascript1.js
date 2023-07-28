@@ -1,5 +1,6 @@
 //localy stored ids
-const eids = JSON.parse(localStorage.getItem('eids')) || [];
+var eids =[];
+var localdata=[];
 var id=0;
 
 function validfun(){
@@ -20,8 +21,12 @@ function validfun(){
     var url=document.getElementById("eurl").value;
     var gender=document.getElementById("Egender").value;
     
-    if (!eid|!numrex.test(eid)){
-        document.getElementById("id_error").innerHTML ="Please enter Id ";
+    if (!eid|!numrex.test(age)){
+        document.getElementById("id_error").innerHTML ="Please enter Id in integer";
+        flg=1;
+    }
+    else if(eids.some(item => item.id === eid)){
+        document.getElementById("id_error").innerHTML ="This Id is already stored ";
         flg=1;
     }
     if (!name){
@@ -58,17 +63,73 @@ function validfun(){
     } 
     return flg;
 }
+function editvalidfun(preid){
+    document.getElementById("Eid_error").innerHTML ="";
+    document.getElementById("Ename_error").innerHTML ="";
+    document.getElementById("Eage_error").innerHTML ="";
+    document.getElementById("Edesg_error").innerHTML ="";
+    document.getElementById("Eurl_error").innerHTML ="";
+    document.getElementById("Egender_error").innerHTML ="";
+    var flg=0;
+    const alphaR = /^[A-Za-z\s]+$/;
+    const numrex= /^[1-9]\d*$/;
+    const urlrex=/(https?:\/\/.*\.(?:png|jpg))/i;
+    var eid=document.getElementById("Eeid").value;
+    var name=document.getElementById("Eename").value;
+    var age=document.getElementById("Eeage").value;
+    var desg=document.getElementById("Eedesg").value;
+    var url=document.getElementById("Eeurl").value;
+    var gender=document.getElementById("EEgender").value;
+    
+    if (!eid){
+        document.getElementById("Eid_error").innerHTML ="Please enter Id ";
+        flg=1;
+    }
+    else if(eids.some(item => item.id == eid && item.id !== preid)){
+        document.getElementById("Eid_error").innerHTML ="This Id is already stored ";
+        flg=1;
+    }
+    if (!name){
+        document.getElementById("Ename_error").innerHTML ="Please enter Name";
+        flg=1;
+    }
+    else if(!alphaR.test(name)){
+        document.getElementById("Ename_error").innerHTML ="Please enter Name in Alpabets";
+        flg=1;
+    }
 
+    if (!age|| !numrex.test(age)){
+        document.getElementById("Eage_error").innerHTML ="Please enter Age in integer";
+        flg=1;
+    }
+    else if ((age<18)||(age>60)){
+        document.getElementById("Eage_error").innerHTML ="Age is out of range";
+        flg=1;
+     }
+
+    if (!desg){
+        document.getElementById("Edesg_error").innerHTML ="please select a desgnation";
+        flg=1;
+    }
+
+    if (!url|!urlrex.test(url)){
+        document.getElementById("Eurl_error").innerHTML ="Please enter URL";
+        flg=1;
+    }
+ 
+    if (!gender){
+        document.getElementById("Egender_error").innerHTML ="Please select gender";
+        flg=1;
+    } 
+    return flg;
+}
 
 // function to add new record
 function add(){
     var flg=validfun();
     var eid=document.getElementById("eid").value;
+
     //checking if id is unique
-    if(eids.some(item => item.id === eid)){
-        document.getElementById("id_error").innerHTML ="This Id is already stored ";
-        flg=1;
-    }
     var name=document.getElementById("ename").value;
     var age=document.getElementById("eage").value;
     var desg=document.getElementById("edesg").value;
@@ -85,22 +146,23 @@ function add(){
             url:url,
             gender:gender
         };    
-        const e_id={id:eid};    
-        const eids = JSON.parse(localStorage.getItem('eids')) || [];      
+        const e_id={id:eid};     
         eids.push(e_id);      
-        localStorage.setItem('eids',JSON.stringify(eids));
-        const localdata = JSON.parse(localStorage.getItem('localdata')) || [];
         localdata.push(edata);
-        localStorage.setItem('localdata',JSON.stringify(localdata));
-        window.location.href = "empdata.html";
+        displayTable();
+
+    document.getElementById("eid").innerHTML=" ";
+    document.getElementById("ename").innerHTML=" ";
+    document.getElementById("eage").innerHTML=" ";
+    document.getElementById("eurl").innerHTML=" ";
+
     }
 }
 
 //function to display data in local storage in tabular form
 function displayTable() {
-    const localdata = JSON.parse(localStorage.getItem('localdata')) || [];
     const tableBody = document.getElementById('tableBody');
-
+    tableBody.innerHTML='';
     localdata.forEach(item => {
         const newRow = tableBody.insertRow();
 
@@ -129,40 +191,36 @@ function displayTable() {
 
 function editbutton(){
     id=event.target.id;
-    localStorage.setItem('id',JSON.stringify(id));
     document.getElementById("editpop").style.display="block";
-    const localdata=JSON.parse(localStorage.getItem('localdata'));
+
     const dataindex = localdata.findIndex(item => item.id === id);
-document.getElementById("eid").value=id;
-document.getElementById("ename").value=localdata[dataindex].name;
-document.getElementById("eage").value=localdata[dataindex].age;
-document.getElementById("edesg").value=localdata[dataindex].desg;
-document.getElementById("eurl").value=localdata[dataindex].url;
-document.getElementById("Egender").value=localdata[dataindex].gender;
+document.getElementById("Eeid").value=id;
+document.getElementById("original-id").value=id;
+document.getElementById("original-id").style.display='none';
+document.getElementById("Eename").value=localdata[dataindex].name;
+document.getElementById("Eeage").value=localdata[dataindex].age;
+document.getElementById("Eedesg").value=localdata[dataindex].desg;
+document.getElementById("Eeurl").value=localdata[dataindex].url;
+document.getElementById("EEgender").value=localdata[dataindex].gender;
+
 }
 
 //funtion to check validation and save the edited data in local storage 
 function editfun(){
-    var flg=validfun();
-    const previousid = JSON.parse(localStorage.getItem('id'));
-    var eid=document.getElementById("eid").value;
-    const eids = JSON.parse(localStorage.getItem('eids')) || [];
-    if(eids.some(item => item.id === eid && item.id !== id)){
-        document.getElementById("id_error").innerHTML ="This Id is already stored ";
-        flg=1;
-    }
+    const id=document.getElementById("original-id").value;
+    var flg=editvalidfun(id);
+    var eid=document.getElementById("Eeid").value;
+   
+    
     if(flg==0){    
-        const eids = JSON.parse(localStorage.getItem('eids')) || []; 
         const idindex = eids.findIndex(item => item.id === id); 
-        var eid=document.getElementById("eid").value;
-        var name=document.getElementById("ename").value;
-        var age=document.getElementById("eage").value;
-        var desg=document.getElementById("edesg").value;
-        var url=document.getElementById("eurl").value;
-        var gender=document.getElementById("Egender").value;
+        var eid=document.getElementById("Eeid").value;
+        var name=document.getElementById("Eename").value;
+        var age=document.getElementById("Eeage").value;
+        var desg=document.getElementById("Eedesg").value;
+        var url=document.getElementById("Eeurl").value;
+        var gender=document.getElementById("EEgender").value;
         eids[idindex].id=eid;      
-        localStorage.setItem('eids',JSON.stringify(eids));
-        const localdata = JSON.parse(localStorage.getItem('localdata')) || [];
         const dataindex = localdata.findIndex(item => item.id === id);
             localdata[dataindex].id=eid;
             localdata[dataindex].name= name;
@@ -170,9 +228,8 @@ function editfun(){
             localdata[dataindex].desg= desg;
             localdata[dataindex].url=url;
             localdata[dataindex].gender=gender;
-        localStorage.setItem('localdata',JSON.stringify(localdata));
-        document.getElementById("editpop").style.display="none";
-        location.reload();
+            document.getElementById("editpop").style.display="none";
+        displayTable();
     }
 
 }
@@ -180,11 +237,9 @@ function editfun(){
 function deletebutton(){
     if (confirm('delete the record?')) {
         var id=event.target.id;
-        const localdata = JSON.parse(localStorage.getItem('localdata')) || [];
         const dataindex = localdata.findIndex(item => item.id === id);
         localdata.splice(dataindex,1);
-        localStorage.setItem('localdata',JSON.stringify(localdata));
-        location.reload();
+        displayTable();
       } 
 }
 
@@ -193,15 +248,13 @@ function deletebutton(){
 
 function viewbutton(){
     var id=event.target.id;
-    const localdata = JSON.parse(localStorage.getItem('localdata')) || [];
     const dataindex = localdata.findIndex(item => item.id === id);
     url=localdata[dataindex].url;
-
     document.getElementById("viewpop").style.display="block";
     document.getElementById("image").innerHTML=' ';
     const img = document.createElement("img");
-    img.style.height="350px";
-    img.style.width="350px";
+    img.style.height="260px";
+    img.style.width="260px";
     img.style.borderRadius="10px";
     img.src = url; 
     document.getElementById("image").appendChild(img);
@@ -219,11 +272,3 @@ function viewbackfun(){
 function editbackfun(){
     document.getElementById("editpop").style.display="none"; 
 }
-function backToAdd(){
-    window.location.href="add.html";
-}
-
-function viewTable(){
-    window.location.href="empdata.html";  
-}
-
